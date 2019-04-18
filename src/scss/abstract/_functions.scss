@@ -1,0 +1,7 @@
+@function theme_color($key: 'primary') {
+  @return map_get($theme-color, $key);
+}
+
+@function theme_text_color($key: 'primary') {
+  @return map_get($text-color, $key);
+}

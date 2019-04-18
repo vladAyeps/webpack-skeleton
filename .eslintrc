@@ -1,0 +1,58 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": 1
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "arrowFunctions": true,
+      "blockBindings": true,
+      "classes": true,
+      "defaultParams": true,
+      "destructuring": true,
+      "forOf": true,
+      "generators": false,
+      "modules": true,
+      "objectLiteralComputedProperties": true,
+      "objectLiteralDuplicateProperties": false,
+      "objectLiteralShorthandMethods": true,
+      "objectLiteralShorthandProperties": true,
+      "spread": true,
+      "superInFunctions": true,
+      "templateStrings": true,
+      "restParams": true,
+      "jsx": true
+    }
+  },
+  "settings": {
+    "parser": "typescript-eslint-parser",
+    "plugins": [
+      "import"
+    ],
+    "rules": {
+      "import/no-unresolved": "error"
+    },
+    "import/resolver": {
+      "typescript": {},
+      "alias": [
+        ["~", "./src"]
+      ]
+    }
+  },
+  "globals": {
+    "document": true,
+    "window": true
+  },
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"],
+    "indent": ["error", 2],
+    "arrow-spacing": ["error", { "before": true, "after": true }],
+    "linebreak-style": ["error", "windows"],
+    "no-param-reassign": [2, {
+      "props": false
+    }]
+  }
+}

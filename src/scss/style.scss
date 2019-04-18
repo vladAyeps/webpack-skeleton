@@ -1,0 +1,35 @@
+/****************
+  Variables
+ ***************/
+
+@import "abstract/vars";
+@import "abstract/functions";
+@import "abstract/_mixins";
+
+@import "reset"; //reset CSS
+
+/****************
+  Vendor CSS
+ ***************/
+
+// import Bootstrap
+@import "vendor/bootstrap/bootstrap-grid";
+
+@import "modal";
+
+@import "component/main";
+
+@import "base";
+
+// import Shared
+@import
+  "shared/header",
+  "shared/footer"
+;
+
+@import "text-modifier";
+
+// import Pages
+@import "page/main";
+
+@import "minmax";

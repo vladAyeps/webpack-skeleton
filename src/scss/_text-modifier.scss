@@ -1,0 +1,50 @@
+.text{
+  &--center{
+    text-align: center;
+  }
+  &--white{
+    color:#fff;
+  }
+  &--semi-bold{
+    font-weight: map_get($font-weight, 'semibold');
+  }
+  &--bold{
+    font-weight: map_get($font-weight, 'bold');
+  }
+  &--right{
+    text-align: right;
+    &-md{
+      @include minMedia(768){
+        text-align: right;
+      }
+    }
+  }
+  &--left{
+    text-align: left;
+    &-md{
+      @include minMedia(768){
+        text-align: left;
+      }
+    }
+  }
+  &--uppercase{
+    text-transform: uppercase;
+  }
+  &--underline{
+    text-decoration: underline;
+  }
+  &--secondary{
+    color: theme_text_color('secondary');
+  }
+  &--error{
+    color: theme_text_color('error');
+  }
+  &--accent{
+    color:theme_text_color('accent');
+  }
+  &--attension{
+    font-size: 22/16*1em;
+    font-weight: 500;
+    line-height: (32/22);
+  }
+}

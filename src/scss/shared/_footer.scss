@@ -1,0 +1,32 @@
+.footer{
+  background-color: #282c2f;
+  color:#fff;
+  padding: 1.5em;
+}
+.footer-title{
+  @extend .text--accent;
+  @extend .text--uppercase;
+  @extend .text--bold;
+  font-size: 17px;
+}
+.footer-icon{
+  color: rgba(#fff, 0.73);
+}
+.footer-network{
+  @extend .footer-icon;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  margin-left: 10px;
+}
+.footer-col{
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  @include minMedia(992){
+    text-align: initial;
+  }
+  &__inner{
+    flex: 0 0 100%;
+  }
+}

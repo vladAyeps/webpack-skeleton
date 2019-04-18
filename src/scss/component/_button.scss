@@ -1,0 +1,61 @@
+button{
+  display: inline-block;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: inherit;
+  background: none;
+}
+.btn{
+  @extend button;
+  &--rounded{
+    @extend .btn;
+    transition: .3s;
+    border-radius: 25px;
+    padding: 10px 22px;
+    @include minMedia(576) {
+      padding: 16px 36px;
+    }
+  }
+  &--footer{
+    @extend .btn--rounded;
+    background: #fff;
+    text-align: center;
+    color: #282c2f;
+  }
+  &--brand{
+    @extend .btn--rounded;
+    background: theme_color(brand);
+    color: #fff;
+    text-align: center;
+    &:hover{
+      background: theme_color('brand-hover');
+    }
+    &:active{
+      background: theme_color('brand-active');
+    }
+  }
+}
+.slider-nav{
+  @extend button;
+  width: 44px;
+  height: 44px;
+  color: theme_color(brand);
+  background-color: #e6e6e6;
+  border-radius: 100%;
+  position: absolute;
+  top: 50%;
+  margin-top: -22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &--prev{
+    @extend .slider-nav;
+    left: 0;
+  }
+  &--next{
+    @extend .slider-nav;
+    right: 0;
+  }
+}

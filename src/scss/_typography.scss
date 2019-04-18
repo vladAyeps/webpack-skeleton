@@ -1,0 +1,51 @@
+html{
+  font-size: 14px;
+  @include minMedia(768){
+    font-size: 16px;
+  }
+}
+body{
+  font-family: $text-font-stack;
+  color: theme_text_color('primary');
+  font-size: 1rem;
+  line-height: 1.25;
+}
+.lora-font{
+  font-family: 'Lora', serif;
+}
+@include placeholderColor(inherit);
+
+.input-error,
+.form-error {
+  color:theme_text_color('error');
+  font-size:13px;
+}
+.h1{
+  font-size: 1.5em;
+  @include minMedia(992){
+    font-size: 32/16*1em;
+  }
+}
+.h2{
+  @extend .h1;
+}
+.strike{
+  text-decoration: line-through;
+}
+.section-header{
+  @extend .h2;
+  @extend .text--center;
+  position: relative;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  &:after{
+    content: '';
+    width: 98px;
+    height: 4px;
+    background-color: rgba(#8d8d8d, 0.17);
+    position: absolute;
+    bottom:0;
+    left:50%;
+    margin-left: -98/2*1px;
+  }
+}

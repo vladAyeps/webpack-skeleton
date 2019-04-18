@@ -1,0 +1,94 @@
+.max-992{
+  @include minMedia(992){
+    display: none;
+  }
+}
+.min-576,
+.min-768,
+.min-992,
+.min-1200,
+.min-inline-576,
+.min-inline-768,
+.min-inline-992,
+.min-inline-1200{
+  display: none;
+}
+.min-576{
+  @include minMedia(576){
+    display: block;
+  }
+}
+.min-768{
+  @include minMedia(768){
+    display: block;
+  }
+}
+.min-992{
+  @include minMedia(992){
+    display: block;
+  }
+}
+.min-1200{
+  @include minMedia(1200){
+    display: block;
+  }
+}
+.min-inline-576{
+  @include minMedia(576){
+    display: inline;
+  }
+}
+.min-inline-768{
+  @include minMedia(768){
+    display: inline;
+  }
+}
+.min-inline-992{
+  @include minMedia(992){
+    display: inline;
+  }
+}
+.min-inline-1200{
+  @include minMedia(1200){
+    display: inline;
+  }
+}
+.wrapper{
+  overflow: hidden;
+}
+.order{
+  &-md{
+    &-1{
+      @include minMedia(768){
+        order:1;
+      }
+    }
+    &-2{
+      @include minMedia(768){
+        order:2;
+      }
+    }
+    &-3{
+      @include minMedia(768){
+        order:3;
+      }
+    }
+  }
+  &-lg{
+    &-1{
+      @include minMedia(992){
+        order:1;
+      }
+    }
+    &-2{
+      @include minMedia(992){
+        order:2;
+      }
+    }
+    &-3{
+      @include minMedia(992){
+        order:3;
+      }
+    }
+  }
+}

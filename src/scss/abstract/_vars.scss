@@ -1,0 +1,72 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+/// Regular font family
+/// @type List
+$text-font-stack: 'Roboto', sans-serif !default;
+
+/// Code (monospace) font family
+/// @type List
+$code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace !default;
+
+
+/// Container's maximum width
+/// @type Length
+$max-width: 1180px !default;
+
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: (
+  'small': 576px,
+  'medium': 768px,
+  'large': 992px,
+  'full': 1200px
+) !default;
+
+/// Container width map based on bootstrap container
+$container-width:(
+  'small' : 540px,
+  'medium' : 720px,
+  'large' : 960px,
+  'full' : 1140px
+) !default;
+
+// Grid column gap
+// Column padding-left-right, Row margin-left-right,
+// container-fluid padding-left-right, Container padding-left-right
+$grid-col-gap: 15px;
+
+$font-weight: (
+  'regular': 400,
+  'bold' : 700,
+  'semibold': 600
+);
+
+$brand: #fd5957 !default;
+
+$text-color: (
+  'primary': #000,
+  'secondary': #8b92ad,
+  'accent': $brand,
+  'light-gray':#767c93,
+  'white': #fff,
+  'footer': #6c769a,
+  'header': #76001d,
+  'error': red
+) !default;
+
+$theme-color: (
+    'primary': #fff,
+    'body': #fff,
+    'brand': $brand,
+    'brand-hover': darken($brand, 10%),
+    'brand-active': darken($brand, 20%),
+    'brand-gradient': #4d8ada,
+    'dark-blue': #0a2896,
+    'light-blue': #0af,
+    'gray': #8a8a8a,
+    'footer': #151b30,
+    'footer-delimeter': #242d4b
+) !default;

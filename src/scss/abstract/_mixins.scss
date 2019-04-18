@@ -1,0 +1,259 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+@mixin when-inside($context) {
+  #{$context} & {
+    @content;
+  }
+}
+
+@mixin media($max-width){
+  @media screen and (max-width: #{$max-width}px) {
+    @content;
+  }
+}
+@mixin pauseAnimation(){
+  -webkit-animation-play-state: paused !important;
+  animation-play-state: paused !important;
+}
+
+@mixin animation($animate...) {
+  $max: length($animate);
+  $animations: '';
+
+  @for $i from 1 through $max {
+    $animations: #{$animations + nth($animate, $i)};
+
+    @if $i < $max {
+      $animations: #{$animations + ", "};
+    }
+  }
+  -webkit-animation: $animations;
+  -moz-animation:    $animations;
+  -o-animation:      $animations;
+  animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+
+@mixin transition($transition...) {
+  -moz-transition:    $transition;
+  -o-transition:      $transition;
+  -webkit-transition: $transition;
+  transition:         $transition;
+}
+@mixin transition-property($property...) {
+  -moz-transition-property:    $property;
+  -o-transition-property:      $property;
+  -webkit-transition-property: $property;
+  transition-property:         $property;
+}
+@mixin transition-duration($duration...) {
+  -moz-transition-property:    $duration;
+  -o-transition-property:      $duration;
+  -webkit-transition-property: $duration;
+  transition-property:         $duration;
+}
+@mixin transition-timing-function($timing...) {
+  -moz-transition-timing-function:    $timing;
+  -o-transition-timing-function:      $timing;
+  -webkit-transition-timing-function: $timing;
+  transition-timing-function:         $timing;
+}
+@mixin transition-delay($delay...) {
+  -moz-transition-delay:    $delay;
+  -o-transition-delay:      $delay;
+  -webkit-transition-delay: $delay;
+  transition-delay:         $delay;
+}
+@mixin minMedia($min-width){
+  @media screen and (min-width: #{$min-width}px) {
+    @content;
+  }
+}
+
+@mixin minMediaOrient($min-width, $orient) {
+  @media screen and (min-width: #{$min-width}px) and (orientation: $orient){
+    @content;
+  }
+}
+
+@mixin dropShadow($horizontal, $vertical, $blur, $spread, $color){
+  -webkit-box-shadow: #{$horizontal}px #{$vertical}px #{$blur}px #{$spread}px $color;
+  -moz-box-shadow: #{$horizontal}px #{$vertical}px #{$blur}px #{$spread}px $color;
+  box-shadow: #{$horizontal}px #{$vertical}px #{$blur}px #{$spread}px $color;
+}
+
+@mixin button($color, $hoverBg, $hoverColor){
+  color: $color;
+  border:2px solid $color;
+  &:before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    background: $hoverBg;
+  }
+  &:hover,&.hovered{
+    color:$hoverColor;
+  }
+  &:hover:before, &.hovered:before{
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+
+
+@mixin placeholderColor($color){
+  ::-webkit-input-placeholder {color:$color;}
+  ::-moz-placeholder          {color:$color;}/* Firefox 19+ */
+  :-moz-placeholder           {color:$color;}/* Firefox 18- */
+  :-ms-input-placeholder      {color:$color;}
+}
+
+@mixin Shadow($atts){
+  -webkit-box-shadow: $atts;
+  -moz-box-shadow: $atts;
+  box-shadow: $atts;
+}
+
+@mixin flexbox(){
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+@mixin flex(){
+  -webkit-flex-basis: 0;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+@mixin flexColumn(){
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+@function opposite-direction($directions) {
+  $opposite-directions: ();
+  $direction-map: (
+          'top':    'bottom',
+          'right':  'left',
+          'bottom': 'top',
+          'left':   'right',
+          'center': 'center',
+          'ltr':    'rtl',
+          'rtl':    'ltr'
+  );
+
+  @each $direction in $directions {
+    $direction: to-lower-case($direction);
+
+    @if map-has-key($direction-map, $direction) {
+      $opposite-directions: append($opposite-directions, unquote(map-get($direction-map, $direction)));
+    } @else {
+      @warn "No opposite direction can be found for `#{$direction}`. Direction omitted.";
+    }
+  }
+
+  @return $opposite-directions;
+}
+
+@mixin triangle($direction, $color: currentcolor, $size: 1em) {
+  @if not index(top right bottom left, $direction) {
+    @error "Direction must be either `top`, `right`, `bottom` or `left`.";
+  }
+
+  width: 0;
+  height: 0;
+  content: '';
+  z-index: 2;
+  border-#{opposite-direction($direction)}: ($size * 1.5) solid $color;
+
+  $perpendicular-borders: $size solid transparent;
+
+  @if $direction == top or $direction == bottom {
+    border-left:   $perpendicular-borders;
+    border-right:  $perpendicular-borders;
+  } @else if $direction == right or $direction == left {
+    border-bottom: $perpendicular-borders;
+    border-top:    $perpendicular-borders;
+  }
+}
+@mixin absoluteCenter($direction: both) {
+  position: absolute;
+  @if $direction == vertical {
+    top:50%;
+    transform: translate(0,-50%);
+  } @else if $direction == horizontal {
+    left:50%;
+    transform: translate(-50%,0);
+  } @else {
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+  }
+}
