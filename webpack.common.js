@@ -15,6 +15,8 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js', '.json'],
     alias: {
+      fonts: path.resolve(__dirname, './src/fonts'),
+      images: path.resolve(__dirname, './src/images'),
       '~': path.join(__dirname, 'src'),
     },
   },
@@ -26,7 +28,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!(dom7|ssr-window|swiper)\/).*/,
         use: [
           {
             loader: 'babel-loader',
