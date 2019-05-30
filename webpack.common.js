@@ -10,6 +10,8 @@ const pathsToClean = [
   'dist/js',
 ];
 
+const PUBLIC_PATH = '../';
+
 module.exports = {
   entry: './src/index.js',
   resolve: {
@@ -71,7 +73,7 @@ module.exports = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          publicPath: process.env.PUBLIC_PATH,
+          publicPath: PUBLIC_PATH,
           use: [
             {
               loader: 'css-loader',
@@ -97,7 +99,7 @@ module.exports = {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          publicPath: process.env.PUBLIC_PATH,
+          publicPath: PUBLIC_PATH,
           use: [
             {
               loader: 'css-loader',
@@ -169,18 +171,15 @@ module.exports = {
     ],
   },
   plugins: [
-    new Dotenv(),
     new CleanWebpackPlugin(pathsToClean, {
       watch: true,
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/index.html',
-      inject: 'head',
-      title: process.env.TITLE,
     }),
     new ExtractTextPlugin('./css/style.[hash].css', {
-      publicPath: process.env.PUBLIC_PATH,
+      publicPath: PUBLIC_PATH,
     }),
     new MiniCssExtractPlugin({
       filename: './css/style.[hash].css',
