@@ -45,11 +45,19 @@ module.exports = {
       },
       {
         test: /\.(handlebars|hbs)$/,
-        loader: 'handlebars-loader',
-        options: {
-          helperDirs: path.resolve(__dirname, 'src/handlebars-helpers'),
-
-        },
+        use: [
+          {
+            loader: 'handlebars-loader',
+            options: {
+              helperDirs: [
+                path.join(__dirname, './src/handlebars-helpers'),
+              ],
+              partialDirs: [
+                path.join(__dirname, './src/template/partial'),
+              ],
+            },
+          }
+        ],
       },
       {
         test: /\.tsx?$/,
@@ -199,7 +207,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './src/index.hbs',
+      template: './src/index.html',
       title: 'Webpack Skeleton'
     }),
     new ExtractTextPlugin('./css/style.[hash].css', {
