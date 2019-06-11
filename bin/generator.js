@@ -5,8 +5,8 @@ const commander = require('commander');
 const shell = require('shelljs');
 
 const fileContent = '';
-const htmlPartialDir = './src/html-parts/partials';
-const scssPartialDir = './src/scss/page/partials';
+const htmlPartialDir = './src/template/partial';
+const scssPartialDir = './src/scss/page/partial';
 
 const generateScss = (path, dir) => {
   if(!fs.existsSync(path)) {
@@ -48,14 +48,29 @@ const walk = function(dir, done) {
 commander
   .command('partial <name>')
   .option('-d, --directory [d]', 'Directory')
+  .option('')
   .action((name, cmd) => {
 
     const htmlNamespace = `${htmlPartialDir}/${cmd.directory}`;
     const htmlPath = `${htmlPartialDir}/${cmd.directory ? cmd.directory + '/' + '_' + name + '.html' : '_' + name + '.html'}`;
+    const hbsPath = `${htmlPartialDir}/${cmd.directory ? cmd.directory + '/' + '_' + name + '.hbs' : '_' + name + '.hbs'}`;
     const scssPath = `${scssPartialDir}/${cmd.directory ? cmd.directory + '/' + '_' + name + '.scss' : '_' + name + '.scss'}`;
 
     if(fs.existsSync(htmlPath) && fs.existsSync(scssPath)) {
       console.log('Partial already exist');
+    }
+    if(fs.existsSync(hbsPath) && fs.existsSync(scssPath)) {
+      console.log('Partial already exist');
+    }
+
+    if(!fs.existsSync(hbsPath)) {
+      if(cmd.directory) {
+        shell.mkdir('-p', htmlNamespace);
+      }
+      fs.writeFile(hbsPath, fileContent, (err) => {
+        if (err) throw err;
+        console.log(`${hbsPath} generated`);
+      });
     }
 
     if(!fs.existsSync(htmlPath)) {
@@ -72,7 +87,7 @@ commander
   });
 
 commander
-  .command('scss-partials')
+  .command('scss-partial')
   .action(() => {
     walk(htmlPartialDir, (err, results) => {
       results.forEach(path => {

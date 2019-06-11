@@ -44,6 +44,14 @@ module.exports = {
         ],
       },
       {
+        test: /\.(handlebars|hbs)$/,
+        loader: 'handlebars-loader',
+        options: {
+          helperDirs: path.resolve(__dirname, 'src/handlebars-helpers'),
+
+        },
+      },
+      {
         test: /\.tsx?$/,
         use: [
           {
@@ -172,7 +180,7 @@ module.exports = {
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
         exclude: [
-          path.resolve(__dirname, 'src/images/svg-sprite'), 
+          path.resolve(__dirname, 'src/images/svg-sprite'),
           path.resolve(__dirname, 'src/fonts'),
         ],
         use: [{
@@ -191,7 +199,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './src/index.html',
+      template: './src/index.hbs',
+      title: 'Webpack Skeleton'
     }),
     new ExtractTextPlugin('./css/style.[hash].css', {
       publicPath: PUBLIC_PATH,
