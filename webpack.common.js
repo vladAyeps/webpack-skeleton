@@ -158,8 +158,23 @@ module.exports = {
         }],
       },
       {
+        test: /\.(jpe?g|png)$/i,
+        use: [
+          {
+            loader: 'responsive-loader',
+            options: {
+              adapter: require('./bin/sharp-adapter'),
+              outputPath: 'images/'
+            }
+          }
+        ]
+      },
+      {
         test: /\.(png|jp(e*)g|svg|gif)$/,
-        exclude: [path.resolve(__dirname, 'src/images/svg-sprite'), path.resolve(__dirname, 'src/fonts')],
+        exclude: [
+          path.resolve(__dirname, 'src/images/svg-sprite'), 
+          path.resolve(__dirname, 'src/fonts'),
+        ],
         use: [{
           loader: 'url-loader',
           options: {

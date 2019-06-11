@@ -63,6 +63,8 @@
     "form-serialize": "^0.7.2",
     "glob-all": "^3.1.0",
     "gsap": "^2.0.2",
+    "handlebars": "^4.1.2",
+    "handlebars-loader": "^1.7.1",
     "html-loader": "^0.5.5",
     "inputmask": "^3.3.11",
     "lightgallery.js": "^1.1.2",
