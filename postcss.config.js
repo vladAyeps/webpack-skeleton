@@ -9,7 +9,12 @@ module.exports = ({env}) => {
   ];
   if(env === 'production') {
     pluginsCollection.push(purgecss({
-      content: glob.sync(path.join(__dirname, 'src/**/*.html')),
+      content: [
+        path.join(__dirname, 'src/**/*.html'),
+        path.join(__dirname, 'src/**/*.hbs'),
+        path.join(__dirname, 'src/**/*.handlebars'),
+        path.join(__dirname, 'src/**/*.pug'),
+      ],
       whitelistPatterns: [
         /modal/,
         /is-/,
