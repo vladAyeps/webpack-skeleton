@@ -44,6 +44,12 @@ module.exports = {
         ],
       },
       {
+        test: /\.pug$/,
+        use: [
+          'pug-loader',
+        ],
+      },
+      {
         test: /\.(handlebars|hbs)$/,
         use: [
           {
@@ -207,7 +213,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './src/index.html',
+      template: './src/index.html', // указать шаблон при необходимости
       title: 'Webpack Skeleton'
     }),
     new ExtractTextPlugin('./css/style.[hash].css', {
