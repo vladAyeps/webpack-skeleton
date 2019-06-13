@@ -102,7 +102,7 @@ yarn generate partial [название]
 ```
 yarn generate partial test -d test -e pug
 ```
-В резальтате будут созданы файлы `./src/scss/page/partial/test/_test.scss` и 
+В результате будут созданы файлы `./src/scss/page/partial/test/_test.scss` и 
 `./src/template/partial/test/_test.pug`.
 
 ## Генерация .scss по существующим partial
