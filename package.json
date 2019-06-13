@@ -72,6 +72,7 @@
     "postcss-load-config": "^1.2.0",
     "postcss-loader": "^2.1.5",
     "pug": "^2.0.3",
+    "pug-loader": "^2.4.0",
     "purgecss-webpack-plugin": "^1.4.0",
     "purgecss-whitelister": "^2.3.1",
     "rellax": "^1.7.2",
