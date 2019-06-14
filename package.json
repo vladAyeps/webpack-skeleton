@@ -8,7 +8,8 @@
     "watch": "webpack --config ./webpack.config.js --mode development",
     "build": "webpack --config ./webpack.config.prod.js --mode production",
     "start": "webpack-dev-server --mode development --open",
-    "generate": "node ./bin/generator.js"
+    "generate": "node ./bin/generator.js",
+    "imagemin": "node ./bin/imagemin.js"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.0.0",
@@ -70,6 +71,10 @@
     "handlebars": "^4.1.2",
     "handlebars-loader": "^1.7.1",
     "html-loader": "^0.5.5",
+    "imagemin": "^6.1.0",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-svgo": "^7.0.0",
+    "imagemin-webp": "^5.1.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "inputmask": "^3.3.11",
     "lightgallery.js": "^1.1.2",

@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
+const shell = require('shelljs');
 const fs = require('fs');
 const commander = require('commander');
-const shell = require('shelljs');
+const { walk } = require('./util');
 
 const fileContent = '';
 const htmlPartialDir = './src/template/partial';
@@ -19,30 +20,6 @@ const generateScss = (path, dir) => {
       console.log(`${path} generated`);
     });
   }
-};
-
-const walk = function(dir, done) {
-  let results = [];
-  fs.readdir(dir, function(err, list) {
-    if (err) return done(err);
-    var i = 0;
-    (function next() {
-      var file = list[i++];
-      if (!file) return done(null, results);
-      file = dir + '/' + file;
-      fs.stat(file, function(err, stat) {
-        if (stat && stat.isDirectory()) {
-          walk(file, function(err, res) {
-            results = results.concat(res);
-            next();
-          });
-        } else {
-          results.push(file);
-          next();
-        }
-      });
-    })();
-  });
 };
 
 commander
@@ -76,15 +53,14 @@ commander
   .command('scss-partial')
   .action(() => {
     walk(htmlPartialDir, (err, results) => {
-      results.forEach(path => {
+      results.forEach((path) => {
         const len = path.length;
-        const index = path.match('_').index;
+        const { index } = path.match('_');
         const filename = path.slice(index, len).replace(/(\.html|\.pug|.\.hbs)/, '.scss');
         const dir = path.slice(0, index).replace(htmlPartialDir, scssPartialDir);
         generateScss(dir + filename, dir.replace(scssPartialDir, ''));
       });
-    })
-
+    });
   });
 
 commander.parse(process.argv);
