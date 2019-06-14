@@ -61,7 +61,7 @@ module.exports = {
                 path.join(__dirname, './src/template/partial'),
               ],
             },
-          }
+          },
         ],
       },
       {
@@ -85,7 +85,7 @@ module.exports = {
             loader: 'html-loader',
             options: {
               minimize: false,
-              interpolate: true
+              interpolate: true,
             },
           },
         ],
@@ -109,8 +109,8 @@ module.exports = {
                 config: {
                   ctx: {
                     env: this.mode,
-                  }
-                }
+                  },
+                },
               },
             },
           ],
@@ -135,8 +135,8 @@ module.exports = {
                 config: {
                   ctx: {
                     env: this.mode,
-                  }
-                }
+                  },
+                },
               },
             },
             {
@@ -185,10 +185,10 @@ module.exports = {
             loader: 'responsive-loader',
             options: {
               adapter: require('./bin/sharp-adapter'),
-              outputPath: 'images/'
-            }
-          }
-        ]
+              outputPath: 'images/',
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
@@ -213,7 +213,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/index.html', // указать шаблон при необходимости
-      title: 'Webpack Skeleton'
+      title: 'Webpack Skeleton',
     }),
     new ExtractTextPlugin('./css/style.[hash].css', {
       publicPath: PUBLIC_PATH,
