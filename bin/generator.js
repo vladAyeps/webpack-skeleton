@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-
+const dotenv = require('dotenv');
+dotenv.config();
 const shell = require('shelljs');
 const fs = require('fs');
 const commander = require('commander');
@@ -8,6 +9,9 @@ const { walk } = require('./util');
 const fileContent = '';
 const htmlPartialDir = './src/template/partial';
 const scssPartialDir = './src/scss/page/partial';
+const pageDir = './src/page';
+
+const { TEMPLATE_EXT } = process.env;
 
 const generateScss = (path, dir) => {
   if(!fs.existsSync(path)) {
@@ -27,7 +31,7 @@ commander
   .option('-d, --directory [d]', 'Directory')
   .option('-e, --ext [e]')
   .action((name, cmd) => {
-    const ext = cmd.ext ? cmd.ext.replace(/\./, '') : 'html';
+    const ext = cmd.ext ? cmd.ext.replace(/\./, '') : TEMPLATE_EXT;
     const htmlNamespace = `${htmlPartialDir}/${cmd.directory}`;
     const htmlPath = `${htmlPartialDir}/${cmd.directory ? cmd.directory + '/' + '_' + name + '.' + ext : '_' + name + '.' + ext}`;
     const scssPath = `${scssPartialDir}/${cmd.directory ? cmd.directory + '/' + '_' + name + '.scss' : '_' + name + '.scss'}`;
@@ -61,6 +65,25 @@ commander
         generateScss(dir + filename, dir.replace(scssPartialDir, ''));
       });
     });
+  });
+
+commander
+  .command('page <name>')
+  .option('-e, --ext [e]')
+  .action((name, cmd) => {
+    const ext = cmd.ext ? cmd.ext.replace(/\./, '') : TEMPLATE_EXT;
+    const dir = `${pageDir}/${name}`;
+    const page = `${dir}/index.${ext}`;
+    if(fs.existsSync(page)) {
+      console.log('already exist');
+    }
+    if(!fs.existsSync(page)) {
+      shell.mkdir('-p', dir);
+      fs.writeFile(page, fileContent, (err) => {
+        if (err) throw err;
+        console.log(`${name} generated`);
+      });
+    }
   });
 
 commander.parse(process.argv);

@@ -1,19 +1,20 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const dotenv = require('dotenv');
+dotenv.config();
+
 const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const plugins = require('./config/common-plugins');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const pathsToClean = [
-  'dist/css',
-  'dist/js',
-];
-
-const PUBLIC_PATH = '../';
+const { PUBLIC_PATH, IMAGE_PATH } = process.env;
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    app: './src/index.js',
+    test: './src/another-entry.js',
+  },
+  output: {
+    filename: './js/[name].[hash].js',
+  },
   resolve: {
     extensions: ['.ts', '.js', '.json'],
     alias: {
@@ -24,7 +25,7 @@ module.exports = {
   },
   devServer: {
     port: 8000,
-    contentBase: path.resolve('public'),
+    contentBase: path.resolve('dist'),
   },
   module: {
     rules: [
@@ -186,7 +187,7 @@ module.exports = {
             loader: 'responsive-loader',
             options: {
               adapter: require('./bin/sharp-adapter'),
-              outputPath: 'images/',
+              outputPath: IMAGE_PATH,
             },
           },
         ],
@@ -201,32 +202,11 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 1000, // Convert images < 1kb to base64 strings
-            name: 'images/[hash].[ext]',
+            name: `${IMAGE_PATH}[hash].[ext]`,
           },
         }],
       },
     ],
   },
-  plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-      "window.jQuery": "jquery"
-    }),
-    new CleanWebpackPlugin(pathsToClean, {
-      watch: true,
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/index.html', // указать шаблон при необходимости
-      title: 'Webpack Skeleton',
-    }),
-    new ExtractTextPlugin('./css/style.[hash].css', {
-      publicPath: PUBLIC_PATH,
-    }),
-    new MiniCssExtractPlugin({
-      filename: './css/style.[hash].css',
-      chunkFilename: '[id].css',
-    }),
-  ],
+  plugins,
 };

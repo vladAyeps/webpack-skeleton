@@ -3,6 +3,16 @@
   color:#fff;
   padding: 1.5em;
 }
+.footer-logo{
+  position: relative;
+  &:before{
+    content: '';
+    display: block;
+    width: 200px;
+    height: 78px;
+    background: #fff url(~images/webpack.png?size=200&height=78) no-repeat 50%/cover;
+  }
+}
 .footer-title{
   @extend .text--accent;
   @extend .text--uppercase;
