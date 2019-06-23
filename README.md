@@ -27,7 +27,8 @@ TEMPLATE_EXT=pug
 
 `src/ts` - исходники TypeScript
 
-`src/page` - отдельные страницы
+`src/page` - отдельные страницы, где каждая отдельная страница является директорией
+с файлом `index.html` (в случае с шаблоном pug - `index.pug`)
 
 `src/partials` - partial-шаблоны
 
