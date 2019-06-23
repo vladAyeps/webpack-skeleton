@@ -1,16 +1,14 @@
 # Скелет html-верстки на базе webpack 4
 
+Переменные окружения `.env`.
+
 Доступны преднастроеные шаблонизаторы handlebars, pug. Для использования шаблонизатора
-в настройках html-webpack-plugin в файле `webpack.common.js` в поле `template` необходимо указать 
+в настройках в файле `.env` в поле `TEMPLATE_EXT` необходимо указать 
 желаемое расширение.
 
 Пример: использование pug
 ```
-new HtmlWebpackPlugin({
-  filename: 'index.html',
-  template: './src/index.pug', // указать шаблон при необходимости
-  title: 'Webpack Skeleton'
-}),
+TEMPLATE_EXT=pug
 ``` 
 
 # Структура
@@ -28,6 +26,8 @@ new HtmlWebpackPlugin({
 `src/scss` - исходники scss
 
 `src/ts` - исходники TypeScript
+
+`src/page` - отдельные страницы
 
 `src/partials` - partial-шаблоны
 
@@ -95,7 +95,7 @@ yarn generate partial [название]
 Доступные опциональные параметры команды:
 ```
 -d [название]  - создание поддиректории для partial
--e [расширение] - желаемое расширение partial ( по-умолчанию 'html' )
+-e [расширение] - желаемое расширение partial ( по-умолчанию значение из переменной окружения )
 ```
 
 Пример: Создать partial в директории test с расширением pug  
@@ -118,6 +118,33 @@ yarn
 ```
 yarn generate scss-partial
 ```
+
+## Сгенерировать страницу
+
+Команда создаст partial-шаблон и .scss-файл относящийся к ней.
+
+npm
+```
+npm run generate page [название]
+```
+
+yarn
+```
+yarn generate page [название]
+```
+
+Доступные опциональные параметры команды:
+```
+-e [расширение] - желаемое расширение partial (по-умолчанию значение из переменной окружения)
+```
+
+Пример: Создать страницу /test
+```
+yarn generate partial test
+```
+Результат: `./src/page/test/index.html`
+
+Страница будет доступна по адресу http://localhost:8000/test
 
 ## Минификация изображений вручную
 

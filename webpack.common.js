@@ -10,7 +10,6 @@ const { PUBLIC_PATH, IMAGE_PATH } = process.env;
 module.exports = {
   entry: {
     app: './src/index.js',
-    test: './src/another-entry.js',
   },
   output: {
     filename: './js/[name].[hash].js',
