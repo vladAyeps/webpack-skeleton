@@ -2,14 +2,14 @@ const purgecss = require('@fullhuman/postcss-purgecss');
 const glob = require('glob-all');
 const path = require('path');
 
-module.exports = ({env}) => {
+module.exports = ({options}) => {
   const pluginsCollection = [
     require('autoprefixer', {
       grid: 'autoplace'
     }),
     require('cssnano')
   ];
-  if(env === 'production') {
+  if(options.env === 'production') {
     pluginsCollection.push(purgecss({
       content: [
         path.join(__dirname, 'src/**/*.html'),
