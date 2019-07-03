@@ -4,7 +4,9 @@ const path = require('path');
 
 module.exports = ({env}) => {
   const pluginsCollection = [
-    require('autoprefixer'),
+    require('autoprefixer', {
+      grid: 'autoplace'
+    }),
     require('cssnano')
   ];
   if(env === 'production') {
