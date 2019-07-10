@@ -30,10 +30,10 @@ pages.forEach((dir) => {
   if (fs.existsSync(index)) {
     html.push(
       new HtmlWebpackPlugin({
-        filename: index.replace(pagePath, ''),
+        filename: index.replace(pagePath, '').replace(TEMPLATE_EXT, 'html'),
         template: index,
         title: 'Webpack Skeleton',
-      })
+      }),
     );
   }
 });
