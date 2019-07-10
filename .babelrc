@@ -3,12 +3,14 @@
     [
       "@babel/preset-env",
       {
-        "useBuiltIns": "entry"
+        "useBuiltIns": "entry",
+        "corejs": 3
       }
     ]
   ],
   "plugins": [
     ["babel-plugin-webpack-alias"],
-    ["@babel/plugin-syntax-dynamic-import"]
+    ["@babel/plugin-syntax-dynamic-import"],
+    ["@babel/plugin-proposal-class-properties"]
   ]
 }
