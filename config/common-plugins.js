@@ -2,7 +2,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const fs = require('fs');
 const { getDirectoriesDeep } = require('../bin/util');
@@ -12,7 +11,7 @@ const pathsToClean = [
   'dist/css',
   'dist/js',
 ];
-const { PUBLIC_PATH, TEMPLATE_EXT } = process.env;
+const { TEMPLATE_EXT } = process.env;
 
 const html = [
   new HtmlWebpackPlugin({
@@ -47,9 +46,6 @@ module.exports = [
   }),
   new CleanWebpackPlugin(pathsToClean, {
     watch: true,
-  }),
-  new ExtractTextPlugin('./css/style.[hash].css', {
-    publicPath: PUBLIC_PATH,
   }),
   new MiniCssExtractPlugin({
     filename: './css/style.[hash].css',

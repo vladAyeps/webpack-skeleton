@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 dotenv.config();
 
@@ -79,61 +79,65 @@ module.exports = (env, argv) => ({
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          publicPath: PUBLIC_PATH,
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: true,
-              },
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: PUBLIC_PATH,
             },
-            {
-              loader: 'postcss-loader',
-              options: {
-                sourceMap: true,
-                config: {
-                  ctx: {
-                    env: argv.mode,
-                  },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              config: {
+                ctx: {
+                  env: argv.mode,
                 },
               },
             },
-          ],
-        }),
+          },
+        ],
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          publicPath: PUBLIC_PATH,
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: true,
-              },
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: PUBLIC_PATH,
             },
-            {
-              loader: 'postcss-loader',
-              options: {
-                sourceMap: true,
-                config: {
-                  ctx: {
-                    env: argv.mode,
-                  },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              config: {
+                ctx: {
+                  env: argv.mode,
                 },
               },
             },
-            {
-              loader: 'sass-loader',
-              options: {
-                sourceMap: true,
-              },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
             },
-          ],
-        }),
+          },
+        ],
       },
       {
         test: /\.svg$/,
