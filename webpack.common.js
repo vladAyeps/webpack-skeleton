@@ -51,22 +51,6 @@ module.exports = (env, argv) => {
           ],
         },
         {
-          test: /\.(handlebars|hbs)$/,
-          use: [
-            {
-              loader: 'handlebars-loader',
-              options: {
-                helperDirs: [
-                  path.join(__dirname, './src/handlebars-helpers'),
-                ],
-                partialDirs: [
-                  path.join(__dirname, './src/template/partial'),
-                ],
-              },
-            },
-          ],
-        },
-        {
           test: /\.tsx?$/,
           use: [
             {

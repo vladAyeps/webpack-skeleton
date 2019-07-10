@@ -31,8 +31,16 @@ module.exports = [
   // new FaviconsWebpackPlugin({
   //   logo: './src/images/logo.svg',
   //   icons: {
-  //     twitter: true,
-  //     windows: true
-  //   }
+  //     android: true,
+  //     appleIcon: true,
+  //     appleStartup: true,
+  //     coast: false,
+  //     favicons: true,
+  //     firefox: false,
+  //     opengraph: false,
+  //     twitter: false,
+  //     yandex: false,
+  //     windows: false,
+  //   },
   // }),
 ];

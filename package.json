@@ -69,8 +69,6 @@
     "form-serialize": "^0.7.2",
     "glob-all": "^3.1.0",
     "gsap": "^2.0.2",
-    "handlebars": "^4.1.2",
-    "handlebars-loader": "^1.7.1",
     "html-loader": "^0.5.5",
     "imagemin": "^6.1.0",
     "imagemin-mozjpeg": "^8.0.0",
