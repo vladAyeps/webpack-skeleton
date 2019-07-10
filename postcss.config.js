@@ -1,5 +1,8 @@
 const purgecss = require('@fullhuman/postcss-purgecss');
+const whitelister = require('purgecss-whitelister');
 const path = require('path');
+// Lightgallery styles prepare for whitelist
+const lg = whitelister('./node_modules/lightgallery.js/dist/css/lightgallery.min.css');
 
 module.exports = ({ options }) => {
   const pluginsCollection = [
@@ -14,6 +17,7 @@ module.exports = ({ options }) => {
         path.join(__dirname, 'src/**/*.html'),
         path.join(__dirname, 'src/**/*.pug'),
       ],
+      whitelist: lg,
       whitelistPatterns: [
         /modal/,
         /is-/,
