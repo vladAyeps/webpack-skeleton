@@ -7,7 +7,7 @@ example.css({
   textAlign: 'center',
   outline: '1px solid #000',
 }).addClass('container');
-example.html('Reality is an illusion, the universe is a hologram, buy gold, bye!');
+example.html('Remember! Reality\'s an illusion, the universe is a hologram, buy gold! Byeeee!');
 if (header) {
   header.after(example);
 }
