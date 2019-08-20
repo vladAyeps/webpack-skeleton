@@ -10,27 +10,37 @@ $text-font-stack: 'Roboto', sans-serif !default;
 /// @type List
 $code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace !default;
 
-
 /// Container's maximum width
 /// @type Length
 $max-width: 1180px !default;
 
-/// Breakpoints map
-/// @prop {String} keys - Keys are identifiers mapped to a given length
-/// @prop {Map} values - Values are actual breakpoints expressed in pixels
-$breakpoints: (
-  'small': 576px,
-  'medium': 768px,
-  'large': 992px,
-  'full': 1200px
+// Bootstrap Breakpoints
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px
 ) !default;
 
-/// Container width map based on bootstrap container
-$container-width:(
-  'small' : 540px,
-  'medium' : 720px,
-  'large' : 960px,
-  'full' : 1140px
+// Bootstrap container width
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1170px
+) !default;
+
+// Bootstrap columns count
+$grid-columns: 12 !default;
+// Bootstrap space between columns
+$grid-gutter-width-base: 30px !default;
+$grid-gutter-widths: (
+        xs: $grid-gutter-width-base,
+        sm: $grid-gutter-width-base,
+        md: $grid-gutter-width-base,
+        lg: $grid-gutter-width-base,
+        xl: $grid-gutter-width-base
 ) !default;
 
 // Grid column gap
