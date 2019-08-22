@@ -9,7 +9,8 @@
     "build": "webpack --config ./webpack.config.prod.js --mode production",
     "start": "webpack-dev-server --mode development --open",
     "generate": "node ./bin/generator.js",
-    "imagemin": "node ./bin/imagemin.js"
+    "imagemin": "node ./bin/imagemin.js",
+    "fix": "./node_modules/.bin/eslint --fix src"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.0.0",
