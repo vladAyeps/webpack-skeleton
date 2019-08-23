@@ -15,6 +15,7 @@ module.exports = (env, argv) => ({
   },
   output: {
     filename: './js/[name].[hash].js',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.js', '.json'],
