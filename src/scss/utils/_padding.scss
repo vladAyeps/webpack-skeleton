@@ -1,0 +1,17 @@
+@for $i from 1 through 5 {
+  .p-#{$i} {
+    padding: #{$i}rem;
+  }
+  .pt-#{$i} {
+    padding-top: #{$i}rem;
+  }
+  .pr-#{$i} {
+    padding-right: #{$i}rem;
+  }
+  .pb-#{$i} {
+    padding-bottom: #{$i}rem;
+  }
+  .pl-#{$i} {
+    padding-left: #{$i}rem;
+  }
+}

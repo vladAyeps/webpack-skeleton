@@ -5,3 +5,7 @@
 @function theme_text_color($key: 'primary') {
   @return map_get($text-color, $key);
 }
+
+@function font_size_rem($size: $base-font-size, $size-default: $base-font-size ) {
+  @return ($size / $size-default * 1rem);
+}
