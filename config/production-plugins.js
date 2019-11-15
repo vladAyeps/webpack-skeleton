@@ -14,6 +14,7 @@ module.exports = [
   new CompressionPlugin({
     test: /\.(html|css|js)(\?.*)?$/i, // only compressed html/css/js, skips compressing sourcemaps etc
   }),
+
   new ImageminPlugin({
     test: /\.(jpe?g|png|gif|svg)$/i,
     gifsicle: { // lossless gif compressor
@@ -28,6 +29,7 @@ module.exports = [
       }),
     ],
   }),
+
   // new FaviconsWebpackPlugin({
   //   logo: './src/images/logo.svg',
   //   icons: {

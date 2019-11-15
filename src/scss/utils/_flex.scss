@@ -1,0 +1,143 @@
+$styles: (
+
+  // flex-direction
+  '.flex-row': (
+    flex-direction: row,
+  ),
+  '.flex-row-reverse': (
+      flex-direction: row-reverse
+  ),
+  '.flex-col': (
+      flex-direction: column
+  ),
+  '.flex-col-reverse': (
+      flex-direction: column-reverse
+  ),
+
+  // flex-wrap
+  '.flex-no-wrap': (
+    flex-wrap: nowrap,
+  ),
+  '.flex-wrap': (
+    flex-wrap: wrap,
+  ),
+
+  // align-items
+  '.items-stretch': (
+      align-items: stretch,
+  ),
+  '.items-start': (
+      align-items: flex-start,
+  ),
+  '.items-center': (
+      align-items: center,
+  ),
+  '.items-end': (
+      align-items: flex-end,
+  ),
+  '.items-baseline': (
+      align-items: baseline,
+  ),
+
+  // align-self
+  '.self-stretch': (
+      align-self: stretch,
+  ),
+  '.self-start': (
+      align-self: flex-start,
+  ),
+  '.self-center': (
+      align-self: center,
+  ),
+  '.self-end': (
+      align-self: flex-end,
+  ),
+  '.self-auto': (
+      align-self: auto,
+  ),
+
+  // align-content
+  '.content-start': (
+      align-content: flex-start,
+  ),
+  '.content-center': (
+      align-content: center,
+  ),
+  '.content-end': (
+      align-content: flex-end,
+  ),
+  '.content-between': (
+      align-content: space-between,
+  ),
+  '.content-around': (
+      align-content: space-around,
+  ),
+
+  // justify-content
+  '.justify-start': (
+      justify-content: flex-start,
+  ),
+  '.justify-center': (
+      justify-content: center,
+  ),
+  '.justify-end': (
+      justify-content: flex-end,
+  ),
+  '.justify-between': (
+      justify-content: space-between,
+  ),
+  '.justify-around': (
+      justify-content: space-around,
+  ),
+
+  // flex
+  '.flex-1': (
+    flex: 1 1 0%,
+  ),
+  '.flex-auto': (
+    flex: 1 1 auto
+  ),
+  '.flex-initial': (
+    flex: 0 1 auto
+  ),
+  '.flex-100': (
+    flex: 0 0 100%
+  ),
+  '.flex-none': (
+    flex: none
+  ),
+
+  // flex-grow
+  '.flex-grow': (
+    flex-grow: 1
+  ),
+  '.flex-grow-0': (
+    flex-shrink: 0
+  )
+);
+
+@function merge_styles($map) {
+  $result: $map;
+  @for $i from 0 through $grid-columns {
+    $s: (
+        '.order-'+$i: (
+          order: $i
+        )
+    );
+
+    $result: map-merge($result, $s);
+  }
+
+  $result: map-merge($result, (
+    '.order-first': (
+      order: -9999
+    ),
+    '.order-last': (
+      order: 9999
+    )
+  ));
+
+  @return $result;
+}
+
+@include generate_styles( merge_styles($styles) );

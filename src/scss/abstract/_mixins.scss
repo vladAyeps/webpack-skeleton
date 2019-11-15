@@ -243,6 +243,7 @@
     border-top:    $perpendicular-borders;
   }
 }
+
 @mixin absoluteCenter($direction: both) {
   position: absolute;
   @if $direction == vertical {
@@ -255,5 +256,83 @@
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
+  }
+}
+
+@mixin square($size: 1em) {
+  width: $size;
+  height: $size;
+}
+
+/**
+  classname : {
+    styles: ['','']
+  }
+ */
+@mixin generate_rem_styles($styles, $loop: 5) {
+
+  @for $i from 0 through $loop {
+    @each $class_name, $style_names in $styles {
+      #{$class_name}-#{$i} {
+        @each $style in $style_names {
+          #{$style}: #{$i}rem;
+        }
+      }
+    }
+  }
+
+  @for $i from 0 through $loop {
+    @each $bp, $val in $grid-breakpoints {
+      @if $bp != 'xs' {
+        @each $class_name, $style_names in $styles {
+          #{$class_name}-#{$i}--#{$bp} {
+            @include minMedia($val) {
+              @each $style in $style_names {
+                #{$style}: #{$i}rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/**
+  classname: {}
+ */
+@mixin generate_styles($styles) {
+  @each $class_name, $style_names in $styles {
+    #{$class_name} {
+      @each $style_name, $style_value in $style_names {
+        #{$style_name}: #{$style_value};
+      }
+    }
+  }
+
+  @each $bp, $val in $grid-breakpoints {
+    @if $bp != 'xs' {
+      @each $class_name, $style_names in $styles {
+        #{$class_name}--#{$bp} {
+          @include minMedia($val) {
+            @each $style_name, $style_value in $style_names {
+              #{$style_name}: #{$style_value};
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin generate_bp_content() {
+  @content;
+  @each $bp, $val in $grid-breakpoints {
+    @if $bp != 'xs' {
+      &--#{$bp} {
+        @include minMedia($val) {
+          @content;
+        }
+      }
+    }
   }
 }

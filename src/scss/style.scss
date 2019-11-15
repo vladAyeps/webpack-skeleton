@@ -13,7 +13,7 @@
  ***************/
 
 // import Bootstrap
-@import "vendor/bootstrap/bootstrap-grid";
+@import "bootstrap-grid";
 
 @import "modal";
 
@@ -26,8 +26,6 @@
   "shared/header",
   "shared/footer"
 ;
-
-@import "text-modifier";
 
 // import Pages
 @import "page/main";

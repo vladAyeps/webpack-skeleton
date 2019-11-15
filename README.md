@@ -1,4 +1,7 @@
-# Скелет html-верстки на базе webpack 4
+# webpack 4 boilerplate
+
+Webpack 4 Boilerplate with Babel, SCSS, browser autoprefix, Eslint, Typescript, 
+optimization using gzip, ImageminPlugin and postcss-purgecss.
 
 Переменные окружения `.env`.
 
@@ -180,3 +183,5 @@ Scss - основной препроцессор проекта для css.
 `abstract/_mixin.scss` - Коллекция миксинов
 
 `abstract/_functions.scss` - Коллекция функций 
+
+`utils/` - Коллекция utility-классов

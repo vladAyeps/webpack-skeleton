@@ -1,0 +1,65 @@
+$styles: (
+  '.text--center': (
+    text-align: center,
+  ),
+  '.text--left': (
+    text-align: left,
+  ),
+  '.text--right': (
+    text-align: right,
+  ),
+  '.text--initial': (
+    text-align: initial,
+  ),
+  '.text--inherit': (
+    text-align: inherit,
+  ),
+  '.text--bold': (
+    font-weight: bold,
+  ),
+  '.text--uppercase': (
+    text-transform: uppercase
+  ),
+  '.text--secondary': (
+    color: theme_text_color('secondary')
+  ),
+  '.text--accent': (
+    color: theme_text_color('accent')
+  ),
+  '.text--accent-hover': (
+    color: theme_text_color('accent'),
+    transition: 0.3s
+  ),
+  '.text--accent-hover:hover': (
+    color: #241E1E
+  ),
+  '.text--error': (
+    color: theme_text_color('error')
+  ),
+  '.text--underline': (
+    text-decoration: underline
+  ),
+  '.text-sm': (
+    font-size: font_size_rem(14px),
+  ),
+  '.text-initial': (
+    font-size: initial,
+  ),
+  '.text-base': (
+    font-size: 1rem,
+  ),
+  '.text-md': (
+    font-size: font_size_rem(18px),
+  ),
+  '.text-lg': (
+    font-size: font_size_rem(20px),
+  ),
+  '.text-xl': (
+    font-size: font_size_rem(24px),
+  ),
+  '.text-inherit': (
+    font-size: inherit,
+  ),
+);
+
+@include generate_styles($styles);

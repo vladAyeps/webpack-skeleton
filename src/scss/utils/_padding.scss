@@ -1,17 +1,61 @@
-@for $i from 1 through 5 {
-  .p-#{$i} {
-    padding: #{$i}rem;
+$styles: (
+  '.p-05': (
+    'padding': 0.5rem
+  ),
+  '.pt-05': (
+    'padding-top': 0.5rem
+  ),
+  '.pr-05': (
+    'padding-right': 0.5rem
+  ),
+  '.pb-05': (
+    'padding-bottom': 0.5rem
+  ),
+  '.pl-05': (
+    'padding-left': 0.5rem
+  ),
+  '.px-05': (
+    'padding-left': 0.5rem,
+    'padding-right': 0.5rem
+  ),
+  '.py-05': (
+    'padding-top': 0.5rem,
+    'padding-bottom': 0.5rem
+  )
+);
+
+@function merge_styles($map) {
+  $result: $map;
+  @for $i from 0 through $grid-columns {
+    $s: (
+      '.p-'+$i: (
+        'padding': $i+'rem'
+      ),
+      '.pt-'+$i: (
+        'padding-top': $i+'rem'
+      ),
+      '.pr-'+$i: (
+        'padding-right': $i+'rem'
+      ),
+      '.pb-'+$i: (
+        'padding-bottom': $i+'rem'
+      ),
+      '.pl-'+$i: (
+        'padding-left': $i+'rem'
+      ),
+      '.px-'+$i: (
+        'padding-left': $i+'rem',
+        'padding-right': $i+'rem'
+      ),
+      '.py-'+$i: (
+        'padding-top': $i+'rem',
+        'padding-bottom': $i+'rem'
+      )
+    );
+
+    $result: map-merge($result, $s);
   }
-  .pt-#{$i} {
-    padding-top: #{$i}rem;
-  }
-  .pr-#{$i} {
-    padding-right: #{$i}rem;
-  }
-  .pb-#{$i} {
-    padding-bottom: #{$i}rem;
-  }
-  .pl-#{$i} {
-    padding-left: #{$i}rem;
-  }
+  @return $result;
 }
+
+@include generate_styles(merge_styles($styles));
