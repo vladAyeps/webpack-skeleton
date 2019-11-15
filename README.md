@@ -88,7 +88,7 @@ yarn generate partial [name]
 Optional params:
 ```
 -d [name]  - generate partial subdirectory
--e [extension] - partial emplate extension ( by default html from environment TEMPLATE_EXT)
+-e [extension] - partial template extension ( by default html from environment TEMPLATE_EXT)
 ```
 
 Example: Generate `.pug` partial in subdirectory `test`
