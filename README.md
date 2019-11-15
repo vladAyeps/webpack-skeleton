@@ -1,187 +1,161 @@
 # webpack 4 boilerplate
 
-Webpack 4 Boilerplate with Babel, SCSS, browser autoprefix, Eslint, Typescript, 
-optimization using gzip, ImageminPlugin and postcss-purgecss.
+## Table of Contents
+- [Introduction](#introduction)
+- [Install](#install)
+- [Environment variables](#environment-variables)
+- [Builtin Pug template engine](#builtin-pug-template-engine)
+- [Builtin Commands](#builtin-commands)
+- [Scss](#scss)
 
-Переменные окружения `.env`.
+## Introduction
 
-Доступны преднастроеный шаблонизатор pug. Для использования шаблонизатора
-в настройках в файле `.env` в поле `TEMPLATE_EXT` необходимо указать 
-желаемое расширение.
+Webpack 4 Boilerplate with Babel, SCSS, browser autoprefix, Eslint, Typescript.
 
-Пример: использование pug
+### Builtin Production optimizations.
+
+Gzip `.css` and `.js` files
+ 
+ImageminPlugin. [More](https://github.com/Klathmon/imagemin-webpack-plugin)
+ 
+Postcss-purgecss. [More](https://github.com/FullHuman/postcss-purgecss)
+
+## Install 
+
+1. `git clone https://github.com/vladAyeps/webpack-skeleton.git`.
+2. Navigate to project folder.
+3. Install all Dependencies, `yarn` or `npm install`.
+4. Start dev-server `yarn start` or `npm run start`.
+5. Run production build `yarn build` or `npm run build`, it will generate folder `dist`.
+
+## Environment variables
+
+`.env` - Environment file
+
+`TEMPLATE_EXT` - main template engine extension, by default `.html`.
+
+`PUBLIC_PATH` - css public path.
+
+`IMAGE_PATH` - main image path.
+
+## Builtin Pug template engine
+
+To use [pug](https://pugjs.org/api/getting-started.html) change default `TEMPLATE_EXT` env variable.
+
 ```
 TEMPLATE_EXT=pug
 ``` 
 
-# Структура
+## Structure
 
-`src` - все исходники
+`src` - all source files
 
-`src/js` - исходники js
+`src/js` - js source
 
-`src/images` - исходники изображений
+`src/images` - image source
 
-`src/images/svg-sprite` - svg-изображения только для svg-спрайтов
+`src/images/svg-sprite` - [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader) image directory.
 
-`src/fonts` - используемые шрифты
+`src/fonts` - fonts
 
-`src/scss` - исходники scss
+`src/scss` - scss source
 
-`src/ts` - исходники TypeScript
+`src/ts` - TypeScript source
 
-`src/page` - отдельные страницы, где каждая отдельная страница является директорией
-с файлом `index.html` (в случае с шаблоном pug - `index.pug`)
+`src/page` - additional pages, each directory includes index file and represents page url
 
-`src/partials` - partial-шаблоны
+`src/partials` - template partials. By default uses underscore partial naming convention ( `_header.html`)
 
-`src/index.html` - основной html-шаблон
+`src/index.(html|pug)` - homepage template
 
-`src/index.js` - основная точка входа
+`src/index.js` - main entry point
 
-# Команды
+## Builtin Commands
 
-## Установить все пакеты 
+### Generate partial
 
-npm
+Generate partial-template in `src/template/partial` and associated .scss in `src/scss/page/partial` using
+underscore partial naming convention.
+
 ```
-npm install
+npm run generate partial [name]
 ```
-
-yarn
+or
 ```
-yarn install
-```
-
-## Запуск локального веб-сервера:
-
-npm
-```
-npm run start
+yarn generate partial [name]
 ```
 
-yarn
+Optional params:
 ```
-yarn start
-```
-
-## Запуск сборки
-
-npm
-```
-npm run build
+-d [name]  - generate partial subdirectory
+-e [extension] - partial emplate extension ( by default html from environment TEMPLATE_EXT)
 ```
 
-yarn
-```
-yarn build
-```
-
-## Сгенерировать partial
-
-Команда создаст partial-шаблон и .scss-файл относящийся к ней.
-
-npm
-```
-npm run generate partial [название]
-```
-
-yarn
-```
-yarn generate partial [название]
-```
-
-Доступные опциональные параметры команды:
-```
--d [название]  - создание поддиректории для partial
--e [расширение] - желаемое расширение partial ( по-умолчанию значение из переменной окружения )
-```
-
-Пример: Создать partial в директории test с расширением pug  
+Example: Generate `.pug` partial in subdirectory `test`
 ```
 yarn generate partial test -d test -e pug
 ```
-В результате будут созданы файлы `./src/scss/page/partial/test/_test.scss` и 
-`./src/template/partial/test/_test.pug`.
 
-## Генерация .scss по существующим partial
+Result: 
+- src/scss/page/partial/test/_test.scss
+- src/template/partial/test/_test.pug
 
-Команда рекурсивно проходит по директории `./src/template/partail` и генерирует соответствующие .scss файлы.
+### Generate partial associated .scss
 
-npm
+The command recursively goes through the directory `./src/template/partail`
+ and generates associated .scss files in `src/scss/page/partial/`.
+
 ```
 npm run generate scss-partial
 ```
-
-yarn
+or
 ```
 yarn generate scss-partial
 ```
 
-## Сгенерировать страницу
+### Generate page
 
-npm
 ```
-npm run generate page [название]
+npm run generate page [name]
 ```
-
-yarn
+or
 ```
-yarn generate page [название]
+yarn generate page [name]
 ```
 
-Доступные опциональные параметры команды:
+Optional params:
 ```
--e [расширение] - желаемое расширение (по-умолчанию значение из переменной окружения)
+-e [extension] - partial emplate extension ( by default html from environment TEMPLATE_EXT)
 ```
 
-Пример: Создать страницу /test
+Example: generate page `/test`
 ```
 yarn generate partial test
 ```
-Результат: `./src/page/test/index.html`
 
-Страница будет доступна по адресу http://localhost:8000/test
+Result: `./src/page/test/index.html`
 
-## Минификация изображений вручную
+http://localhost:8000/test
 
-Рекурсивно проходит по директории `src/images`, создает минифицированные изображения
-в `src/images/min`.
+### Image minification
 
-npm
+The command recursively goes through the directory `src/images` and creates minified images in `src/images/min` 
+using [imagemin](https://github.com/imagemin/imagemin).
+
 ```
 npm run imagemin
 ```
-
-yarn
+or
 ```
 yarn imagemin
 ```
 
-# Сборка
+## Scss
 
-Сборка осуществляется командой `build`, во время production-сборки работают дополнительные 
-плагины:
+`abstract/_vars.scss` - variables
 
-* postcss плагин postcss-purgecss - сканирует html файлы и финальный css,
-удаляет все неиспользуемые в проекте селекторы. Поддерживает whitelist селекторов через 
-опциональные параметры `whitelistPatterns` - массив регулярных выражений, `whitelist` - 
-массив селекторов. [Подробнее](https://github.com/FullHuman/postcss-purgecss);
-* ImageminPlugin - сжатие изображений, [Подробнее](https://github.com/Klathmon/imagemin-webpack-plugin);
-* svg-sprite-loader - использование svg-изображений в качестве спрайтов;
-* FaviconsWebpackPlugin - плагин генерации фавиконок для всевозможных устройств. 
-По-умолчанию отключен, для использования необходимо раскомметриовать блок внутри
-`webpack.config.prod.js` и добавить корректный путь до исходного изображения - идеальный 
-вариант svg-изображение, либо png не менее 512х512. После пересобрать проект.
+`abstract/_mixin.scss` - builtin mixins
 
-# Scss
+`abstract/_functions.scss` - builtin fnuctions
 
-Scss - основной препроцессор проекта для css.
-
-`abstract/_vars.scss` - переменные проекта
-
-`abstract/_mixin.scss` - Коллекция миксинов
-
-`abstract/_functions.scss` - Коллекция функций 
-
-`utils/` - Коллекция utility-классов
+`utils/` - builtin utility-classes
