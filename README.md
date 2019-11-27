@@ -156,6 +156,6 @@ yarn imagemin
 
 `abstract/_mixin.scss` - builtin mixins
 
-`abstract/_functions.scss` - builtin fnuctions
+`abstract/_functions.scss` - builtin functions
 
 `utils/` - builtin utility-classes
