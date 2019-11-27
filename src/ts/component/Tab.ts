@@ -1,9 +1,9 @@
 import { forEachElement } from '../utils/elements';
 
 interface Options {
-  btnSelector: string
-  paneSelector: string
-  activeClass: string
+  btn: string
+  pane: string
+  active: string
 }
 
 interface TabContainer extends HTMLElement {
@@ -29,14 +29,14 @@ export default class Tab {
 
   constructor(selector: string | NodeList, options?: Options) {
     this.options = Object.assign({
-      btnSelector: '.tab-btn',
-      paneSelector: '.tab-pane',
-      activeClass: '.is-active',
+      btn: '.tab-btn',
+      pane: '.tab-pane',
+      active: '.is-active',
     }, options);
     this.wrapper = typeof selector === 'string' ? document.querySelectorAll(selector) : selector;
-    this.tabBtnClassName = this.options.btnSelector;
-    this.tabClassName = this.options.paneSelector;
-    this.activeClass = this.options.activeClass.replace(/\./, '');
+    this.tabBtnClassName = this.options.btn;
+    this.tabClassName = this.options.pane;
+    this.activeClass = this.options.active.replace(/\./, '');
   }
 
   public init = () => {
@@ -85,7 +85,5 @@ export default class Tab {
     pane.classList.add(this.activeClass);
   };
 
-  private getPane = (index, container: TabContainer) => {
-    return container.pane[index];
-  };
+  private getPane = (index, container: TabContainer) => container.pane[index];
 }
