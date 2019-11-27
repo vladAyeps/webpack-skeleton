@@ -1,0 +1,27 @@
+@keyframes fadein {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+.tab-btn{
+  @extend .btn;
+  padding: 10px 15px;
+  border: {
+    left: 1px solid #000;
+    top: 1px solid #000;
+    right: 1px solid #000;
+  }
+  &.is-active{
+    color: #fff;
+    background: #000;
+    border-bottom: 1px solid #000;
+  }
+}
+.tab-pane{
+  display: none;
+  animation: fadein 1s;
+  border: 1px solid #000;
+  padding: 1.5rem 1rem;
+  &.is-active{
+    display: block;
+  }
+}
