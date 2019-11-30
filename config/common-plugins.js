@@ -10,6 +10,7 @@ const pathsToClean = [
 
 
 module.exports = [
+  new webpack.SourceMapDevToolPlugin({}),
   new webpack.ProvidePlugin({
     '$': 'jquery',
     'jQuery': 'jquery',
