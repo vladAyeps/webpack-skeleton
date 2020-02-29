@@ -1,5 +1,5 @@
 import Modal from '../component/modal';
-import {forEachElement} from '../utils/elements';
+import { forEachElement } from '../utils/elements';
 
 const modal = new Modal();
 
