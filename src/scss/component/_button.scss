@@ -8,26 +8,15 @@ button{
 }
 .btn{
   @extend button;
-  &--rounded{
-    @extend .btn;
-    transition: .3s;
-    border-radius: 25px;
-    padding: 10px 22px;
-    @include minMedia(576) {
-      padding: 16px 36px;
-    }
-  }
-  &--footer{
-    @extend .btn--rounded;
-    background: #fff;
-    text-align: center;
-    color: #282c2f;
-  }
   &--brand{
-    @extend .btn--rounded;
+    padding: 10px 22px;
     background: theme_color(brand);
     color: #fff;
     text-align: center;
+    transition: .3s;
+    @include minMedia(576) {
+      padding: 16px 36px;
+    }
     &:hover{
       background: theme_color('brand-hover');
     }

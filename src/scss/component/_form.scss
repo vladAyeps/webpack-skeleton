@@ -1,8 +1,7 @@
-input{
-  border-radius: 27px;
-  background-color: #ffffff;
-  padding: 18px 36px;
-  border: none;
+input,
+textarea{
+  font: inherit;
+  padding: 0.5rem 0.75rem;
 }
 .terms{
   color: #777777;

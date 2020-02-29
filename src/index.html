@@ -23,15 +23,31 @@
 <body>
 <div class="page-wrap">
   ${require('./template/partial/_header.html')}
-  <div class="container text--center">
-    <div class="bill">
-      <svg fill="currentColor" width="100" height="100">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#bill-icon"></use>
-      </svg>
+
+  <div class="page-content">
+    <div class="container text--center">
+      <div id="jquery-example-container"></div>
+      <div class="bill">
+        <svg fill="currentColor" width="100" height="100">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#bill-icon"></use>
+        </svg>
+      </div>
+    </div>
+
+    ${require('./template/partial/_tabs.html')}
+
+    <div class="container">
+      <div class="text--center mb-1">
+        <button data-target="#modal" data-toggle="modal" class="btn btn--brand">Open modal</button>
+      </div>
+      <div class="text--center mb-1">
+        <button data-target="#modal-2" data-toggle="modal" class="btn btn--brand">Open modal 2</button>
+      </div>
     </div>
   </div>
-  ${require('./template/partial/_tabs.html')}
+
   ${require('./template/partial/_footer.html')}
+  ${require('./template/partial/_modal.html')}
 </div>
 </body>
 </html>

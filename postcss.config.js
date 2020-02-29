@@ -15,7 +15,9 @@ module.exports = ({ options }) => {
     pluginsCollection.push(purgecss({
       content: [
         path.join(__dirname, 'src/**/*.html'),
-        path.join(__dirname, 'src/**/*.pug'),
+        path.join(__dirname, 'src/**/*.html'),
+        path.join(__dirname, 'src/**/*.js'),
+        path.join(__dirname, 'src/**/*.ts'),
       ],
       whitelist: lg,
       whitelistPatterns: [

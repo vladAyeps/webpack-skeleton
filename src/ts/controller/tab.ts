@@ -1,4 +1,4 @@
-import Tab from '../ts/component/Tab';
+import Tab from '../component/Tab';
 
 const tabs = new Tab('.js-tabs');
 tabs.init();
