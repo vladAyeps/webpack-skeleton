@@ -19,7 +19,7 @@ $modal-padding-y: 1.5rem;
   backface-visibility: hidden;
   padding: $modal-padding-y 20px;
   z-index: 101;
-  position: absolute;
+  position: fixed;
   left:0;
   right:0;
   top:25px;
