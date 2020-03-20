@@ -9,18 +9,15 @@ $styles: (
   '.display-none': (
     display: none
   ),
-  '.display-block': (
+  '.block': (
     display: block
   ),
-  '.display-inline': (
+  '.inline': (
     display: inline
   ),
-  '.display-inline-block': (
+  '.inline-block': (
     display: inline-block
   ),
-  '.width-100': (
-    width: 100%,
-  )
 );
 
 @include generate_styles( $styles );

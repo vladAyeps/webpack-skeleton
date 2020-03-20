@@ -8,7 +8,7 @@ $text-font-stack: 'Roboto', sans-serif !default;
 
 $base-font-size: 16px !default;
 
-$base-line-height: 1.5 !default;
+$base-line-height: 1.15 !default;
 
 /// Code (monospace) font family
 /// @type List
@@ -51,6 +51,8 @@ $grid-gutter-widths: (
 // Column padding-left-right, Row margin-left-right,
 // container-fluid padding-left-right, Container padding-left-right
 $grid-col-gap: 15px;
+
+$media-classname-separator: \@;
 
 $font-weight: (
   'regular': 400,

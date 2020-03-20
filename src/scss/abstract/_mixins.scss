@@ -123,103 +123,11 @@
   box-shadow: #{$horizontal}px #{$vertical}px #{$blur}px #{$spread}px $color;
 }
 
-@mixin button($color, $hoverBg, $hoverColor){
-  color: $color;
-  border:2px solid $color;
-  &:before{
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    -webkit-transform: scaleX(0);
-    transform: scaleX(0);
-    -webkit-transform-origin: 0 50%;
-    transform-origin: 0 50%;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-timing-function: ease-out;
-    transition-timing-function: ease-out;
-    background: $hoverBg;
-  }
-  &:hover,&.hovered{
-    color:$hoverColor;
-  }
-  &:hover:before, &.hovered:before{
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-  }
-}
-
-
 @mixin placeholderColor($color){
   ::-webkit-input-placeholder {color:$color;}
   ::-moz-placeholder          {color:$color;}/* Firefox 19+ */
   :-moz-placeholder           {color:$color;}/* Firefox 18- */
   :-ms-input-placeholder      {color:$color;}
-}
-
-@mixin Shadow($atts){
-  -webkit-box-shadow: $atts;
-  -moz-box-shadow: $atts;
-  box-shadow: $atts;
-}
-
-@mixin flexbox(){
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-@mixin flex(){
-  -webkit-flex-basis: 0;
-  -ms-flex-preferred-size: 0;
-  flex-basis: 0;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-@mixin flexColumn(){
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-@function opposite-direction($directions) {
-  $opposite-directions: ();
-  $direction-map: (
-          'top':    'bottom',
-          'right':  'left',
-          'bottom': 'top',
-          'left':   'right',
-          'center': 'center',
-          'ltr':    'rtl',
-          'rtl':    'ltr'
-  );
-
-  @each $direction in $directions {
-    $direction: to-lower-case($direction);
-
-    @if map-has-key($direction-map, $direction) {
-      $opposite-directions: append($opposite-directions, unquote(map-get($direction-map, $direction)));
-    } @else {
-      @warn "No opposite direction can be found for `#{$direction}`. Direction omitted.";
-    }
-  }
-
-  @return $opposite-directions;
 }
 
 @mixin triangle($direction, $color: currentcolor, $size: 1em) {
@@ -265,42 +173,13 @@
 }
 
 /**
-  classname : {
-    styles: ['','']
-  }
+  .class: (
+    padding-top: 0,
+    padding-bottom: 1rem,
+    ...
+  )
  */
-@mixin generate_rem_styles($styles, $loop: 5) {
-
-  @for $i from 0 through $loop {
-    @each $class_name, $style_names in $styles {
-      #{$class_name}-#{$i} {
-        @each $style in $style_names {
-          #{$style}: #{$i}rem;
-        }
-      }
-    }
-  }
-
-  @for $i from 0 through $loop {
-    @each $bp, $val in $grid-breakpoints {
-      @if $bp != 'xs' {
-        @each $class_name, $style_names in $styles {
-          #{$class_name}-#{$i}--#{$bp} {
-            @include minMedia($val) {
-              @each $style in $style_names {
-                #{$style}: #{$i}rem;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-/**
-  classname: {}
- */
-@mixin generate_styles($styles) {
+ @mixin generate_regular_styles($styles) {
   @each $class_name, $style_names in $styles {
     #{$class_name} {
       @each $style_name, $style_value in $style_names {
@@ -308,12 +187,14 @@
       }
     }
   }
+}
 
+@mixin generate_bp_styles($styles) {
   @each $bp, $val in $grid-breakpoints {
-    @if $bp != 'xs' {
-      @each $class_name, $style_names in $styles {
-        #{$class_name}--#{$bp} {
-          @include minMedia($val) {
+    @if $val != 0 {
+      @media screen and (min-width: #{$val}) {
+        @each $class_name, $style_names in $styles {
+          #{$class_name}#{$media-classname-separator}#{$bp} {
             @each $style_name, $style_value in $style_names {
               #{$style_name}: #{$style_value};
             }
@@ -324,15 +205,64 @@
   }
 }
 
-@mixin generate_bp_content() {
-  @content;
-  @each $bp, $val in $grid-breakpoints {
-    @if $bp != 'xs' {
-      &--#{$bp} {
-        @include minMedia($val) {
-          @content;
+/**
+  $styles: (
+    '.class': (
+      padding-top: 0,
+      padding-bottom: 1rem,
+      ...
+    )
+  )
+ */
+@mixin generate_styles($styles) {
+  @include generate_regular_styles($styles);
+  @include generate_bp_styles($styles);
+}
+
+/**
+  classname : {
+    styles: ['','']
+  }
+ */
+@mixin generate_rem_styles($styles, $loop: 20, $step: 0.25, $default: (), $negative: false) {
+  $all_styles: map-merge((), $default);
+
+  // positive loop
+  @for $i from 0 through $loop {
+    @each $class, $style_names in $styles {
+      $temp_style: ();
+      $temp_styles: ();
+
+      @each $style in $style_names {
+        $value: #{$step * $i}rem;
+        $style_name: #{$style};
+        $temp_styles: map-merge($temp_styles, ($style_name: $value ) );
+      }
+      $class_name: #{$class}-#{$i};
+      $temp_style: map-merge($temp_style, ($class_name: $temp_styles) );
+      $all_styles: map-merge($all_styles, $temp_style);
+    }
+  }
+
+  @if $negative {
+    // negative loop
+    @for $i from 1 through $loop {
+      @each $class, $style_names in $styles {
+        $temp_style: ();
+        $temp_styles: ();
+
+        @each $style in $style_names {
+          $value: #{$step * $i * -1}rem;
+          $style_name: #{$style};
+          $temp_styles: map-merge($temp_styles, ($style_name: $value ) );
         }
+        $class_name: #{str-replace($class, '.', '.-')}-#{$i};
+        $temp_style: map-merge($temp_style, ($class_name: $temp_styles) );
+        $all_styles: map-merge($all_styles, $temp_style);
       }
     }
   }
+
+  @include generate_styles($all_styles);
+
 }

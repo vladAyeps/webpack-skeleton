@@ -26,13 +26,6 @@ $styles: (
   '.text--accent': (
     color: theme_text_color('accent')
   ),
-  '.text--accent-hover': (
-    color: theme_text_color('accent'),
-    transition: 0.3s
-  ),
-  '.text--accent-hover:hover': (
-    color: #241E1E
-  ),
   '.text--error': (
     color: theme_text_color('error')
   ),
