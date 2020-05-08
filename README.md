@@ -10,7 +10,7 @@
 
 ## Introduction
 
-Webpack 4 Boilerplate with Babel, SCSS, browser autoprefix, Eslint, Typescript.
+Webpack 4 Boilerplate with Babel, SCSS, browser autoprefix, Eslint, Typescript. Based on [Encore](https://symfony.com/doc/current/frontend.html#encore-documentation)
 
 ### Builtin Production optimizations.
 
@@ -23,10 +23,10 @@ Postcss-purgecss. [More](https://github.com/FullHuman/postcss-purgecss)
 ## Install 
 
 1. `git clone https://github.com/vladAyeps/webpack-skeleton.git`.
-2. Navigate to project folder.
-3. Install all Dependencies, `yarn` or `npm install`.
-4. Start dev-server `yarn start` or `npm run start`.
-5. Run production build `yarn build` or `npm run build`, it will generate folder `dist`.
+2. Navigate to project folder `cd webpack-skeleton`.
+3. Install all Dependencies, `yarn install` or `npm install`.
+4. Start dev-server `yarn dev-server` or `npm run dev-server`.
+5. Run production build `yarn build` or `npm run build`.
 
 ## Environment variables
 
@@ -34,9 +34,15 @@ Postcss-purgecss. [More](https://github.com/FullHuman/postcss-purgecss)
 
 `TEMPLATE_EXT` - main template engine extension, by default `.html`.
 
-`PUBLIC_PATH` - css public path.
+`PUBLIC_PATH` - public path.
 
 `IMAGE_PATH` - main image path.
+
+`DEV_SERVER_MODE` - if set to 'prod' dev-server serves files in production mode.
+
+`SVG_SPRITE_EXTRACT` - svg-sprite-loader extract option value.
+
+`AUTO_PROVIDE_JQUERY` - if set to 'true' - enable jQuery support.
 
 ## Builtin Pug template engine
 

@@ -1,22 +1,22 @@
 $styles: (
   // display
-  '.flex': (
-    display: flex,
-  ),
-  '.inline-flex': (
-    display: inline-flex,
-  ),
-  '.display-none': (
+  '.d-none': (
     display: none
   ),
-  '.block': (
-    display: block
-  ),
-  '.inline': (
+  '.d-inline': (
     display: inline
   ),
-  '.inline-block': (
+  '.d-inline-block': (
     display: inline-block
+  ),
+  '.d-block': (
+    display: block
+  ),
+  '.d-flex': (
+    display: flex,
+  ),
+  '.d-inline-flex': (
+    display: inline-flex,
   ),
 );
 
