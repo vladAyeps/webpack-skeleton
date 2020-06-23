@@ -1,6 +1,6 @@
 html{
   font-size: 14px;
-  @include minMedia(768){
+  @include minMedia(md){
     font-size: $base-font-size;
   }
 }
@@ -22,7 +22,7 @@ body{
 }
 .h1{
   font-size: 1.5em;
-  @include minMedia(992){
+  @include minMedia(lg){
     font-size: 32/16*1em;
   }
 }

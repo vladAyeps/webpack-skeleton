@@ -4,15 +4,16 @@
 
 /// Regular font family
 /// @type List
-$text-font-stack: 'Roboto', sans-serif !default;
+$text-font-stack: "Open Sans", sans-serif !default;
 
 $base-font-size: 16px !default;
+$sm-font-size: 14px !default;
 
-$base-line-height: 1.15 !default;
+$base-line-height: 1.375 !default;
 
 /// Code (monospace) font family
 /// @type List
-$code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace !default;
+$code-font-stack: "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Monaco", monospace !default;
 
 /// Container's maximum width
 /// @type Length
@@ -20,69 +21,92 @@ $max-width: 1180px !default;
 
 // Bootstrap Breakpoints
 $grid-breakpoints: (
-        xs: 0,
-        sm: 576px,
-        md: 768px,
-        lg: 992px,
-        xl: 1200px
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1420px,
 ) !default;
 
 // Bootstrap container width
 $container-max-widths: (
-        sm: 540px,
-        md: 720px,
-        lg: 960px,
-        xl: 1170px
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px,
+  xxl: 1420px,
 ) !default;
 
 // Bootstrap columns count
 $grid-columns: 12 !default;
 // Bootstrap space between columns
-$grid-gutter-width-base: 30px !default;
+$grid-gutter-width-base: 20px !default;
+$grid-gutter-width: 20px;
 $grid-gutter-widths: (
-        xs: $grid-gutter-width-base,
-        sm: $grid-gutter-width-base,
-        md: $grid-gutter-width-base,
-        lg: $grid-gutter-width-base,
-        xl: $grid-gutter-width-base
+  xs: $grid-gutter-width-base,
+  sm: $grid-gutter-width-base,
+  md: $grid-gutter-width-base,
+  lg: $grid-gutter-width-base,
+  xl: $grid-gutter-width-base,
+  xxl: $grid-gutter-width-base,
 ) !default;
+
+$media-classname-separator: \@;
 
 // Grid column gap
 // Column padding-left-right, Row margin-left-right,
 // container-fluid padding-left-right, Container padding-left-right
-$grid-col-gap: 15px;
-
-$media-classname-separator: \@;
+$grid-col-gap: 10px;
 
 $font-weight: (
-  'regular': 400,
-  'bold' : 700,
-  'semibold': 600
+  "light": 300,
+  "regular": 400,
+  "normal": 400,
+  "semibold": 600,
+  "bold": 700,
 );
 
-$brand: #fd5957 !default;
+$brand: #EF7D00 !default;
 
+/********
+  Text color values
+ *******/
 $text-color: (
-  'primary': #000,
-  'secondary': #8b92ad,
-  'accent': $brand,
-  'light-gray':#767c93,
-  'white': #fff,
-  'footer': #6c769a,
-  'header': #76001d,
-  'error': red
+  "primary": #000,
+  "secondary": #6A6A6A,
+  "accent": $brand,
+  "brand": $brand,
+  "header": #76001d,
+  "error": #ff0000,
+  "footer": #fff,
+  "header-top": #fff,
 ) !default;
 
+/********
+  Background color values
+ *******/
 $theme-color: (
-    'primary': #fff,
-    'body': #fff,
-    'brand': $brand,
-    'brand-hover': darken($brand, 10%),
-    'brand-active': darken($brand, 20%),
-    'brand-gradient': #4d8ada,
-    'dark-blue': #0a2896,
-    'light-blue': #0af,
-    'gray': #8a8a8a,
-    'footer': #151b30,
-    'footer-delimeter': #242d4b
+  "primary": #fff,
+  "secondary": #F6F6F6,
+  "body": #fff,
+  "brand": $brand,
+  "brand-gradient": $brand,
+  "footer": #363538,
+  "header-top": #363538,
 ) !default;
+
+/********
+  Button values
+*******/
+@import "color-scheme/button-color-scheme";
+
+/********
+  Margin spacing values
+ *******/
+@import "spacing/margin-spacing-values";
+
+/********
+  Padding spacing values
+ *******/
+@import "spacing/padding-spacing-values";

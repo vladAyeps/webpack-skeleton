@@ -1,30 +1,27 @@
 @import "typography";
+
 *{
   outline: none;
   box-sizing: border-box;
 }
+
 img{
   max-width: 100%;
 }
-.block-image{
-  display: block;
-}
+
 a{
   color: inherit;
   text-decoration: none;
 }
+
 body{
   background: theme_color('body');
 }
-.section{
-  padding: 1em 0;
-  @include minMedia(992){
-    padding: 2em 0;
-  }
-}
+
 .input-error{
   display: none;
 }
+
 .pointer{
   cursor: pointer;
 }
@@ -32,6 +29,7 @@ body{
 .inline-block{
   display: inline-block;
 }
+
 .page-wrap{
   position: relative;
   overflow: hidden;

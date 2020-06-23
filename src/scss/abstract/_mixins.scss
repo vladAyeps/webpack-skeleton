@@ -1,27 +1,4 @@
-// -----------------------------------------------------------------------------
-// This file contains all application-wide Sass mixins.
-// -----------------------------------------------------------------------------
-
-/// Event wrapper
-/// @author Harry Roberts
-/// @param {Bool} $self [false] - Whether or not to include current selector
-/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
-@mixin on-event($self: false) {
-  @if $self {
-    &,
-    &:hover,
-    &:active,
-    &:focus {
-      @content;
-    }
-  } @else {
-    &:hover,
-    &:active,
-    &:focus {
-      @content;
-    }
-  }
-}
+@import "mixin/media";
 
 /// Make a context based selector a little more friendly
 /// @author Hugo Giraudel
@@ -32,11 +9,6 @@
   }
 }
 
-@mixin media($max-width){
-  @media screen and (max-width: #{$max-width}px) {
-    @content;
-  }
-}
 @mixin pauseAnimation(){
   -webkit-animation-play-state: paused !important;
   animation-play-state: paused !important;
@@ -105,17 +77,7 @@
   -webkit-transition-delay: $delay;
   transition-delay:         $delay;
 }
-@mixin minMedia($min-width){
-  @media screen and (min-width: #{$min-width}px) {
-    @content;
-  }
-}
 
-@mixin minMediaOrient($min-width, $orient) {
-  @media screen and (min-width: #{$min-width}px) and (orientation: $orient){
-    @content;
-  }
-}
 
 @mixin dropShadow($horizontal, $vertical, $blur, $spread, $color){
   -webkit-box-shadow: #{$horizontal}px #{$vertical}px #{$blur}px #{$spread}px $color;
@@ -179,7 +141,7 @@
     ...
   )
  */
- @mixin generate_regular_styles($styles) {
+@mixin generate_regular_styles($styles) {
   @each $class_name, $style_names in $styles {
     #{$class_name} {
       @each $style_name, $style_value in $style_names {
@@ -265,4 +227,53 @@
 
   @include generate_styles($all_styles);
 
+}
+
+/**
+$values: (
+  1: '0.25rem',
+  2: '0.5rem',
+)
+ */
+@mixin generate_styles_from_values($styles, $values, $default: (), $negative: false) {
+  $all_styles: map-merge((), $default);
+
+  // positive loop
+  @each $suffix, $value in $values {
+    @each $class, $style_names in $styles {
+      $temp_style: ();
+      $temp_styles: ();
+
+      @each $style in $style_names {
+        $style_name: #{$style};
+        $temp_styles: map-merge($temp_styles, ($style_name: $value ) );
+      }
+      $class_name: #{$class}-#{$suffix};
+      $temp_style: map-merge($temp_style, ($class_name: $temp_styles) );
+      $all_styles: map-merge($all_styles, $temp_style);
+    }
+  }
+
+  @if $negative {
+    // negative loop
+    @each $suffix, $init_value in $values {
+      @if $init_value != 0 {
+        @each $class, $style_names in $styles {
+          $temp_style: ();
+          $temp_styles: ();
+
+          @each $style in $style_names {
+            $value: #{$init_value * -1};
+            $style_name: #{$style};
+            $temp_styles: map-merge($temp_styles, ($style_name: $value ) );
+          }
+          $class_name: #{str-replace($class, '.', '.-')}-#{$suffix};
+          $temp_style: map-merge($temp_style, ($class_name: $temp_styles) );
+          $all_styles: map-merge($all_styles, $temp_style);
+        }
+      }
+    }
+  }
+
+  @include generate_styles($all_styles);
 }

@@ -1,3 +1,5 @@
+@import "type-checking";
+
 @function theme_color($key: 'primary') {
   @return map_get($theme-color, $key);
 }
@@ -6,20 +8,28 @@
   @return map_get($text-color, $key);
 }
 
+@function fw($key: 'normal') {
+  @return map_get($font-weight, $key);
+}
+
 @function font_size_rem($size: $base-font-size, $size-default: $base-font-size ) {
   @return ($size / $size-default * 1rem);
+}
+
+@function font_size_em($size: $base-font-size, $size-default: $base-font-size ) {
+  @return ($size / $size-default * 1em);
 }
 
 @function opposite-direction($directions) {
   $opposite-directions: ();
   $direction-map: (
-    'top':    'bottom',
-    'right':  'left',
-    'bottom': 'top',
-    'left':   'right',
-    'center': 'center',
-    'ltr':    'rtl',
-    'rtl':    'ltr'
+      'top':    'bottom',
+      'right':  'left',
+      'bottom': 'top',
+      'left':   'right',
+      'center': 'center',
+      'ltr':    'rtl',
+      'rtl':    'ltr'
   );
 
   @each $direction in $directions {

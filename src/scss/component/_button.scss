@@ -1,50 +1,99 @@
-button{
+button {
   display: inline-block;
   border: none;
   color: inherit;
   cursor: pointer;
   font-size: inherit;
   background: none;
+  > * {
+    pointer-events: none;
+  }
 }
-.btn{
+
+.btn {
   @extend button;
-  &--brand{
-    padding: 10px 22px;
-    background: theme_color(brand);
-    color: #fff;
-    text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: (22 / 16);
+  padding: font_size_rem(14px) font_size_rem(14px);
+  min-width: 180px;
+  @include minMedia(md) {
+    min-width: 0;
+    padding: font_size_rem(14px) font_size_rem(32px);
+  }
+
+  .icon {
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .btn--icon {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &--transparent{
+    text-transform: uppercase;
+    color: $btn-transparent-text-color;
+    border-color: $btn-transparent-border-color;
     transition: .3s;
-    @include minMedia(576) {
-      padding: 16px 36px;
-    }
     &:hover{
-      background: theme_color('brand-hover');
+      color: $btn-transparent-text-color-hover;
+      background: $btn-transparent-background-color-hover;
+      border-color: $btn-transparent-border-color-hover;
     }
     &:active{
-      background: theme_color('brand-active');
+      color: $btn-transparent-text-color-active;
+      background: $btn-transparent-background-color-active;
+      border-color: $btn-transparent-border-color-active;
     }
   }
-}
-.slider-nav{
-  @extend button;
-  width: 44px;
-  height: 44px;
-  color: theme_color(brand);
-  background-color: #e6e6e6;
-  border-radius: 100%;
-  position: absolute;
-  top: 50%;
-  margin-top: -22px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &--prev{
-    @extend .slider-nav;
-    left: 0;
+
+  &--secondary{
+    color: $btn-secondary-text-color;
+    background: $btn-secondary-background-color;
+    border-color: $btn-secondary-border-color;
+    transition: .3s;
+    &:hover{
+      background: $btn-secondary-background-color-hover;
+      color: $btn-secondary-text-color-hover;
+      border-color: $btn-secondary-border-color-hover;
+    }
+    &:active{
+      background: $btn-secondary-background-color-active;
+      color: $btn-secondary-text-color-active;
+      border-color: $btn-secondary-border-color-active;
+    }
   }
-  &--next{
-    @extend .slider-nav;
-    right: 0;
+
+  &--brand,
+  &-primary {
+    color: $btn-brand-text-color;
+    background: $btn-brand-background-color;
+    border-color: $btn-brand-border-color;
+    transition: 0.3s;
+    &:hover {
+      background: $btn-brand-background-color-active;
+      color: $btn-brand-text-color-active;
+      border-color: $btn-brand-border-color-active;
+    }
+    &:active {
+      background: $btn-brand-background-color-active;
+      color: $btn-brand-text-color-active;
+      border-color: $btn-brand-border-color-active;
+    }
+  }
+
+  &--underline{
+    position: relative;
+    padding: 0;
+    border: 0;
+    text-decoration: underline;
+    display: inline-block;
+    &:active{
+      top: 1px;
+    }
   }
 }

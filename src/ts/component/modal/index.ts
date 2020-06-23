@@ -18,7 +18,6 @@ export default class Modal {
       modalVisibilityClass: '.is-visible',
       modalClass: '.modal',
     }, opts);
-    this.body = document.querySelector('body');
     this.closeEvent = new Event(MODAL_CLOSE_EVENT);
     this.init();
   }
@@ -26,6 +25,7 @@ export default class Modal {
   private init = () => {
     this.overlay = document.createElement('div');
     this.overlay.classList.add(this.getOption('overlaySelector'));
+    this.body = document.querySelector('body');
     this.body.appendChild(this.overlay);
     this.overlay.onclick = () => {
       this.closeModal();

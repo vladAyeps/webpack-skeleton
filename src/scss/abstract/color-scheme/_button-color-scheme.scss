@@ -1,0 +1,35 @@
+// Transparent button values
+$btn-transparent-text-color: #000 !default;
+$btn-transparent-text-color-hover: #fff !default;
+$btn-transparent-text-color-active: #fff !default;
+$btn-transparent-border-color: #000 !default;
+$btn-transparent-border-color-hover: #000 !default;
+$btn-transparent-border-color-active: #000 !default;
+$btn-transparent-background-color-hover: #000 !default;
+$btn-transparent-background-color-active: #000 !default;
+
+// Secondary button values
+$btn-secondary-text-color: #fff !default;
+$btn-secondary-text-color-hover: #fff !default;
+$btn-secondary-text-color-active: #fff !default;
+
+$btn-secondary-border-color: #000 !default;
+$btn-secondary-border-color-hover: #000 !default;
+$btn-secondary-border-color-active: #000 !default;
+
+$btn-secondary-background-color: #000 !default;
+$btn-secondary-background-color-hover: #000 !default;
+$btn-secondary-background-color-active: #000 !default;
+
+// Brand button values
+$btn-brand-text-color: #fff !default;
+$btn-brand-text-color-hover: #fff !default;
+$btn-brand-text-color-active: #fff !default;
+
+$btn-brand-border-color: $brand !default;
+$btn-brand-border-color-hover: darken($brand, 10%) !default;
+$btn-brand-border-color-active: darken($brand, 20%) !default;
+
+$btn-brand-background-color: $brand !default;
+$btn-brand-background-color-hover: darken($brand, 10%) !default;
+$btn-brand-background-color-active: darken($brand, 20%) !default;

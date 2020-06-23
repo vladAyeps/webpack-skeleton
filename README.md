@@ -160,8 +160,8 @@ yarn imagemin
 
 `abstract/_vars.scss` - variables
 
-`abstract/_mixin.scss` - builtin mixins
+`abstract/_mixin.scss` - mixins
 
-`abstract/_functions.scss` - builtin functions
+`abstract/_functions.scss` - functions
 
-`utils/` - builtin utility-classes
+`utils/` - utility-classes
