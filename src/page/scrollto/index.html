@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll to Example</title>
+    <style>
+        .b-separator {
+            height: 1500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        ${require('../../template/partial/_header.html')}
+      
+        <div class="page-content">
+      
+          <div class="container">
+            <div class="text--center mb-4 mb-8@lg">
+              <button data-target="#scroll-to" data-action="scroll-to" class="btn btn--brand">Scroll To</button>
+            </div>
+          </div>
+          <div class="b-separator"></div>
+
+          <div id="scroll-to">Scroll to content</div>
+
+          <div class="b-separator"></div>
+        </div>
+      
+        ${require('../../template/partial/_footer.html')}
+      </div>
+</body>
+</html>
