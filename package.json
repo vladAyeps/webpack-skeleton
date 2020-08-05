@@ -7,7 +7,7 @@
   "scripts": {
     "watch": "./node_modules/.bin/eslint --fix src && ./node_modules/.bin/encore dev --watch",
     "build": "./node_modules/.bin/eslint --fix src && ./node_modules/.bin/encore production --progress",
-    "dev-server": "./node_modules/.bin/eslint --fix src && encore dev-server --open",
+    "dev-server": "./node_modules/.bin/eslint --fix src && encore dev-server",
     "generate": "node ./bin/generator.js",
     "imagemin": "node ./bin/imagemin.js",
     "fix": "./node_modules/.bin/eslint --fix src"

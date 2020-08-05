@@ -27,10 +27,28 @@ $modal-padding-y: 1.5rem;
   pointer-events: none;
   max-height: 100vh;
   overflow-y: scroll;
-
   transition: all 0.3s;
-  transform: translateY(-5%);
   opacity: 0;
+
+  &.is-visible{
+    visibility: visible;
+    pointer-events: initial;
+    opacity: 1;
+  }
+
+  &.in {
+    transform: translateY(-15%);
+    &.is-visible {
+      transform: translateY(0);
+    }
+  }
+  &.out {
+    transform: translateY(15%);
+    &.is-visible {
+      transform: translateY(0);
+    }
+  }
+
   @include minMedia(sm) {
     overflow: visible;
   }
@@ -45,18 +63,36 @@ $modal-padding-y: 1.5rem;
       box-shadow: 0 19px 34.6px 3.4px rgba(0, 0, 0, 0.15);
     }
   }
-  
-  &.is-visible{
-    visibility: visible;
-    pointer-events: initial;
-    transform: translateY(0);
-    opacity: 1;
-  }
 
   &--scale-up {
-    transform: scale(0.6);
-    &.is-visible {
-      transform: scale(1);
+    &.in {
+      transform: scale(0.6);
+      &.is-visible {
+        transform: scale(1);
+      }
+    }
+    
+    &.out {
+      transform: scale(0.6);
+      &.is-visible {
+        transform: scale(1);
+      }
+    }
+  }
+
+  &--scale-in-out {
+    &.in {
+      transform: scale(0.6);
+      &.is-visible {
+        transform: scale(1);
+      }
+    }
+    
+    &.out {
+      transform: scale(1.4);
+      &.is-visible {
+        transform: scale(1);
+      }
     }
   }
 
