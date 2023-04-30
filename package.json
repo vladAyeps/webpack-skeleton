@@ -20,7 +20,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
     "eslint": "^5.12.1",
-    "html-webpack-plugin": "^3.0.7",
+    "html-webpack-plugin": "^5.5.1",
     "image-webpack-loader": "^4.6.0",
     "svg-sprite-loader": "^3.7.3",
     "ts-loader": "^4.3.0",
